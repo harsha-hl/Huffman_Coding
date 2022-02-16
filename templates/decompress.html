@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.dots.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            VANTA.DOTS({
+                el: "#wrapper",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: 0x294cbe,
+                color2: 0x0,
+                backgroundColor: 0x0,
+                size: 6.60,
+                spacing: 42.00
+            })
+        });
+        </script>
+        <title>Decompress File</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+        <style type="text/css">
+            html, body {
+                height: 100%;
+                margin: 0;
+                font-family: 'Oswald', sans-serif;
+            }
+            #wrapper {
+                min-height: 100%;
+            }
+            .heading{
+                font-family: 'Kalam', cursive;
+            }
+            .bton{
+                font-weight:600;
+                font-size: 16px;
+                background: white;
+                color: black;
+                border:transparent;
+                padding: 5px 15px;
+                transition: transform 0.5s;
+
+            }
+            .bton:hover{
+                font-weight:600;
+                cursor:pointer;
+                background:transparent;
+                color:white;
+                text-decoration:none;
+                transform: translateY(-8px);
+            }
+            .bton2{
+                font-weight:600;
+                font-size: 16px;
+                background: transparent;
+                color: black;
+                border:transparent;
+                padding: 8px 25px;
+                transition: transform 0.5s;
+            }
+            .bton2:hover{
+                color:white;
+                text-decoration:none;
+                transform: translateY(-8px);
+            }
+        </style>
+        <!--[if lte IE 6]>
+        <style type="text/css">
+            #container {
+                height: 100%;
+            }
+        </style>
+        <![endif]-->
+    </head>
+
+    <body style="background-color: black; align-items: center; margin-top:-30px;">
+        <div style="color: white; text-align:center;" id="wrapper">
+            <h1 style="padding-top:150px; font-size: 44px; font-weight:700;">DECOMPRESS YOUR FILE</h1>
+        <form action="/decompress" method="POST" enctype="multipart/form-data">
+            <div>
+                <label style="margin-top:20px; margin-bottom:30px; font-weight:lighter; font-size:16px;">Select a huffman tree encoded binary file to decompress it !</label>
+                <input type="file" name="file" id="file" style="font-size:16px; width:170px;margin-left:44%; background:white; color:#a0a0a0;">
+            </div>
+            <button style="margin-top:30px;" class="bton" type="submit">Upload</button><br>
+            <label style="margin-top:20px; font-weight:lighter; font-size:16px;">Please wait after uploading so that your file gets decompressed.</label>
+
+        </form>
+
+        <p id="success" style="margin-top:50px;"></p><br>
+        <button class="bton2" id="dd" style= "margin-top:20px;"><a id="download" href="/download" style="text-decoration:none; color:black;"></a></button>
+
+        <div class="col-2" style="flex: 1;">
+            <div style="margin: 5px 30px;" id = "myalert" class="alert alert-success collapse" >
+                <a id="linkClose" href="#" class="close" style="text-decoration:none;">&times;</a>
+                <p id="mytext"></p>
+            </div>
+            <div style="margin: 5px 30px;" id = "myalert1" class="alert alert-danger collapse" >
+                <a id="linkClose1" href="#" class="close" style="text-decoration:none;">&times;</a>
+                <p id="mytext1"></p>
+            </div>
+
+        </div>
+
+        </div>
+
+        <script>
+        $(document).ready(function(){
+        $('#linkClose').click(function(){
+            $('#myalert').hide('fade');
+            });
+        });
+        $(document).ready(function(){
+            $('#linkClose1').click(function(){
+                $('#myalert1').hide('fade');
+            });
+
+            if("{{check}}" == 1){
+            mytext.innerHTML = "<strong> &#10003; </strong> File uploaded and decompressed succesfully!";
+            $('#myalert').show('fade');
+            setTimeout(function(){
+                $('#myalert').hide('fade');
+            },4000);
+            success.innerHTML = "Download your decompressed file";
+            dd.setAttribute("class", "bton");
+            download.innerHTML = "DOWNLOAD";
+        }
+        else if("{{check}}" == -1){
+            mytext1.innerHTML = "<strong> Sorry ! </strong> Error in uploading file.";
+            $('#myalert1').show('fade');
+            setTimeout(function(){
+                $('#myalert1').hide('fade');
+            },4000);
+        }
+});
+
+        </script>
+    </body>
+</html>
