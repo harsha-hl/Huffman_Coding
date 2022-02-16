@@ -32,7 +32,7 @@ It is important to ensure the number of bits in the string produced by replacing
 ![Decompress3](static/Decompress3.png)
 
 #### Note : 
-The size of the input file must be big enough ( <strong>500 bytes</strong>) to notice the size difference. A very small input file if encoded/compressed would otherwise result in a bigger compressed file owing to the additional contents of the hashmap written at the beginning (which would surpass the reduction in size obtained by replacing characters with prefix codes). This should be avoided as there is not point in having a compression algorithm if the input file is so small.
+The size of the input file must be big enough ( <strong>> 500 bytes</strong>) to notice the size difference. A very small input file if encoded/compressed would otherwise result in a bigger compressed file owing to the additional contents of the hashmap written at the beginning (which would surpass the reduction in size obtained by replacing characters with prefix codes). This should be avoided as there is not point in having a compression algorithm if the input file is so small.
 
 ## Results
 To test the compression algorithm, I have used a randomly generated ```testing.txt``` file which is around <strong>48.3 Mb</strong> in size. Upon uploading this file and downloading the compressed ```.bin``` file i.e ```testing-compressed.bin```, we can see that there is around <strong>47 %</strong> reduction in size of the input file (48.3 Mb to 25.8 Mb). This file is now decompressed and the ```testing-decompressed.txt``` file is obtained which is exactly <strong>48.3 Mb</strong> in size and retains all the original contents of ```testing.txt``` without any loss in data. Hence the name Lossless Data Compression Algorithm.
